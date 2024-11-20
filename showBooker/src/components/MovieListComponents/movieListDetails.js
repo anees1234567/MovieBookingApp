@@ -1,4 +1,4 @@
-import seats from "./seat";
+import seats from "../bookingPageComponent/seat";
 
 export const movieDetails = {
     Movie1: {

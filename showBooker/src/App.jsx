@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import MovieList from './components/Movielist'
+import MovieList from './components/MovieListComponents/Movielist'
+import { Route, Routes,BrowserRouter } from 'react-router-dom'
+import BookingComponent from './components/bookingPageComponent/BookingComponent'
+import { Provider } from './components/ui/provider'
+
 
 function App() {
   
 
   return (
-   <div className=''  style={{display:"flex", flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-         <h1>Movie List</h1>
-         <MovieList/>
-   </div>
+
+    <Provider>
+      <BrowserRouter>
+        <Routes>
+          {/* Define your routes */}
+          <Route path="/" element={<MovieList />} />
+          <Route path="/movie-details" element={<BookingComponent />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   )
 }
 
