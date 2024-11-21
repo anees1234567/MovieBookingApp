@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-const bookingSlice = createSlice({
+const selectingSlice = createSlice({
   name: 'selectedMovie',
   initialState: {},
   reducers: {
-    selectmovie: (state,action) => {
+    nameDispatch: (state, action) => {
+      
+      state[action.payload.name] = {};
+    },
+    showDispatch: (state, action) => {
         
-    }
-  
+     
+      if (!state[action.payload.name]) {
+        state[action.payload.name] = {}; // Ensure the name exists
+      }
+      state[action.payload.name][action.payload.show] = {};
+    },
   },
 });
 
-export const { bookMovie } = bookingSlice.actions;
-export default bookingSlice
+export const { nameDispatch, showDispatch } = selectingSlice.actions;
+export default selectingSlice;

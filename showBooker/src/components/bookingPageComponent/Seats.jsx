@@ -2,6 +2,7 @@ import { Button } from '@chakra-ui/react';
 import React from 'react'
 import { movieDetails } from '../MovieListComponents/movieListDetails';
 import seats from './seat'
+import { bookMovie } from '../../Redux/bookingSlice';
   
 
 const Seats = ({MovieName,showName}) => {
@@ -10,6 +11,11 @@ const Seats = ({MovieName,showName}) => {
     
     if(MovieName!=null && showName!=null){
         console.log(movieDetails);
+    }
+    
+    const bookSeats=(seatData)=>{
+        console.log(seatData);
+        
     }
     
     
@@ -24,7 +30,7 @@ const Seats = ({MovieName,showName}) => {
                 {row.seats.map((seat) => (
                   <Button
                     key={seat.seatNumber}
-                    onClick={() => toggleSeatSelection(row.row, seat.seatNumber)}
+                    onClick={() => bookSeats({row:row.row, seat:seat.seatNumber})}
                     width="40px"
                     height="40px"
                     bg={seat.isBooked ? 'gray.400' : 'white'}

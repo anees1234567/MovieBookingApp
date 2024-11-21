@@ -1,14 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button,Flex } from '@chakra-ui/react';
 import Seats from './Seats';
 import MovieCard from './MovieCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { showDispatch } from '../../Redux/SelectedMovieSlice';
 
 const BookingComponent = () => {
-const [selectedMovie, setSelectedMovie] = useState(null);
+// const [selectedMovie, setSelectedMovie] = useState(null);
 const [show, setShow] = useState(null);
 const [bookingView,setBookingView]=useState(false)
-const handleClick = (event, showName) => {
+const dispatch=useDispatch()
+
+
+const selectedMovie=useSelector((state)=>{ return state.selectedMovie
+})
+
+const movieName=Object.keys(selectedMovie)[0]
+
+
+useEffect(()=>{
+  console.log(selectedMovie);
+},[selectedMovie])
+
+
+const handleClick = (showName) => {
     setShow(showName)
+    dispatch(showDispatch({name:movieName,show:showName}))
   };
   return (
     <>
@@ -37,51 +54,40 @@ const handleClick = (event, showName) => {
         </button>
       </div>
        </div>
-
-
-
-{ bookingView &&  <div>
+ <div>
 
 <div className='w-[100vw] flex flex-row justify-end my-2 '>
      <div className='flex gap-3 mx-5'>
       <Button
-        onClick={() => handleClick(_,'MorningShow')}
+        onClick={() => handleClick('MorningShow')}
        className='bg-neutral-200 p-2 hover:bg-slate-500'
       >
         Morning
       </Button>
       <Button
-        onClick={() => handleClick(_,'NoonShow')}
+        onClick={() => handleClick('NoonShow')}
         className='bg-neutral-200  p-2 hover:bg-slate-500'
       >
         Noon Show
       </Button>
       <Button
-        onClick={() => handleClick(_,'FirstShow')}
+        onClick={() => handleClick('FirstShow')}
        className='bg-neutral-200  p-2 hover:bg-slate-500'
       >
         First Show
       </Button>
       <Button
         className='bg-neutral-200  p-2 hover:bg-slate-500'
-        onClick={() => handleClick(_,'SecondShow')}
+        onClick={() => handleClick('SecondShow')}
        
       >
         Second Show
       </Button>
     </div>
 </div>
-        <Seats MovieName={selectedMovie} showName={show}/>
-</div>}
-
-      
-
-
-
-
-       </div >
-    
-    
+        <Seats MovieName={movieName} showName={show}/>
+</div>
+  </div >
     </>
   )
 }
