@@ -3,7 +3,8 @@ import { Button,Flex } from '@chakra-ui/react';
 import Seats from './Seats';
 import MovieCard from './MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { showDispatch } from '../../Redux/SelectedMovieSlice';
+import { movieDetails } from '../MovieListComponents/movieListDetails';
+import { showDispatch } from '../../assets/Redux/SelectedMovieSlice';
 
 const BookingComponent = () => {
 // const [selectedMovie, setSelectedMovie] = useState(null);
@@ -34,56 +35,61 @@ const handleClick = (showName) => {
        <div className="max-w-lg rounded-lg overflow-hidden shadow-lg transition transform hover:scale-105 hover:shadow-2xl duration-300">
       <div className="relative">
         <img
-          src="https://mir-s3-cdn-cf.behance.net/projects/404/2860e9192636849.Y3JvcCwzMDMxLDIzNzAsMCw1Mg.jpg"
+          src={movieDetails[movieName]?.img}
           alt="Movie Poster"
-          className="w-full h-64 object-cover" // Adjust height for better visuals
+          className="w-full h-80 object-fill" // Adjust height for better visuals
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
       </div>
 
       <div className="p-6 bg-black text-white">
-        <h3 className="text-3xl font-semibold">Nue Camp</h3> {/* Increased font size */}
+        {/* <h3 className="text-3xl font-semibold">{movieName}</h3> Increased font size */}
         <p className="text-md mt-2 text-gray-300 opacity-80">
-          This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
+        {movieDetails[movieName]?.details}
         </p>
       </div>
-
-      <div className="p-4 flex justify-between bg-gray-800">
-        <button  onClick={()=>{setBookingView(true)}} className="px-6 py-3 bg-teal-600 text-white font-semibold rounded-md transition hover:bg-teal-700">
-          Book Movie
-        </button>
-      </div>
+     
+  
        </div>
  <div>
 
 <div className='w-[100vw] flex flex-row justify-end my-2 '>
-     <div className='flex gap-3 mx-5'>
-      <Button
-        onClick={() => handleClick('MorningShow')}
-       className='bg-neutral-200 p-2 hover:bg-slate-500'
-      >
-        Morning
-      </Button>
-      <Button
-        onClick={() => handleClick('NoonShow')}
-        className='bg-neutral-200  p-2 hover:bg-slate-500'
-      >
-        Noon Show
-      </Button>
-      <Button
-        onClick={() => handleClick('FirstShow')}
-       className='bg-neutral-200  p-2 hover:bg-slate-500'
-      >
-        First Show
-      </Button>
-      <Button
-        className='bg-neutral-200  p-2 hover:bg-slate-500'
-        onClick={() => handleClick('SecondShow')}
-       
-      >
-        Second Show
-      </Button>
-    </div>
+<div className="flex gap-3 mx-5">
+  <Button
+    onClick={() => handleClick('MorningShow')}
+    bg={show === 'MorningShow' ? 'blue.500' : 'slategrey'}
+    color={'white' }    p={2}
+    _hover={{ bg: 'slate.500' }}
+  >
+    Morning Show
+  </Button>
+  <Button
+    onClick={() => handleClick('NoonShow')}
+    bg={show === 'NoonShow' ? 'blue.500' : 'slategrey'}
+    color={'white' }
+    p={2}
+    _hover={{ bg: 'slate.500' }}
+  >
+    Noon Show
+  </Button>
+  <Button
+    onClick={() => handleClick('FirstShow')}
+    bg={show === 'FirstShow' ? 'blue.500' : 'slategrey'}
+    color={'white' }    p={2}
+    _hover={{ bg: 'slate.500' }}
+  >
+    First Show
+  </Button>
+  <Button
+    onClick={() => handleClick('SecondShow')}
+    bg={show === 'SecondShow' ? 'blue.500' : 'slategrey'}
+    color={'white' }    p={2}
+    _hover={{ bg: 'slate.500' }}
+  >
+    Second Show
+  </Button>
+</div>
+
 </div>
         <Seats MovieName={movieName} showName={show}/>
 </div>

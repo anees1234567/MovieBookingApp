@@ -4,6 +4,7 @@ import MovieList from './components/MovieListComponents/Movielist'
 import { Route, Routes,BrowserRouter } from 'react-router-dom'
 import BookingComponent from './components/bookingPageComponent/BookingComponent'
 import { Provider } from './components/ui/provider'
+import Navbar from './components/Navbar'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Define your routes */}
+          
           <Route path="/" element={<MovieList />} />
           <Route path="/movie-details" element={<BookingComponent />} />
         </Routes>

@@ -5,14 +5,11 @@ const selectingSlice = createSlice({
   initialState: {},
   reducers: {
     nameDispatch: (state, action) => {
-      
       state[action.payload.name] = {};
     },
     showDispatch: (state, action) => {
-        
-     
       if (!state[action.payload.name]) {
-        state[action.payload.name] = {}; // Ensure the name exists
+        state[action.payload.name] = {}; 
       }
       state[action.payload.name][action.payload.show] = {};
     },
