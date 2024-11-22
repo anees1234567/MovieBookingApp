@@ -1,6 +1,7 @@
 import seats from "../bookingPageComponent/seat";
 
 export const movieDetails = {
+   
     Movie1: {
         img:"https://preview.redd.it/what-is-the-best-first-look-poster-ever-for-a-malayalam-v0-36wa4xf8wtdd1.jpg?width=640&crop=smart&auto=webp&s=e2cab97c7bec210dbed2f71459cbb4d0a6478272",
         details:"Minnal Murali is a 2021 Malayalam superhero film directed by Basil Joseph. The story revolves around Jaison, a tailor from a small village in Kerala, who gains superpowers after being struck by lightning.",

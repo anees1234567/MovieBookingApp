@@ -14,9 +14,8 @@ function App() {
 
     <Provider>
       <BrowserRouter>
+      <Navbar/>
         <Routes>
-          {/* Define your routes */}
-          
           <Route path="/" element={<MovieList />} />
           <Route path="/movie-details" element={<BookingComponent />} />
         </Routes>

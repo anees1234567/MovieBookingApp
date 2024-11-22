@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { movieDetails } from './movieListDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { nameDispatch } from '../../assets/Redux/SelectedMovieSlice';
+import { nameDispatch } from '../../Redux/SelectedMovieSlice';
 import { useNavigate } from 'react-router-dom';
 
 
 const MovieList = () => {
   
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const navigate=useNavigate()
   const dispatch=useDispatch()
 
@@ -15,7 +14,11 @@ const MovieList = () => {
     dispatch(nameDispatch({name:Movie}))
     navigate("/movie-details")
   }
-  
+  const bookingdetails=useSelector((state)=>{return state.booking})
+
+  useEffect(()=>{
+      console.log(bookingdetails);
+  },[])
 
   return (
     <>
@@ -23,8 +26,7 @@ const MovieList = () => {
   {/* Loop through the movieDetails object */}
   {Object.entries(movieDetails).map(([movieName, movieData]) => (
     <div
-    className={`h-[400px] w-[300px] flex items-center justify-center bg-gray-100 
-      ${selectedMovie === movieName ? 'border-4 border-blue-500' : ''}`} 
+    className={`h-[400px] w-[300px] flex items-center justify-center bg-gray-100 `} 
       style={{ overflow: 'hidden' }} // Ensures the container hides overflow
       key={movieName}
       onClick={()=>{handleSelectedMovie(movieName)}}

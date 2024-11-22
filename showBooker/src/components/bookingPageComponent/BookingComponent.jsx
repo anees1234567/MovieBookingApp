@@ -4,16 +4,16 @@ import Seats from './Seats';
 import MovieCard from './MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieDetails } from '../MovieListComponents/movieListDetails';
-import { showDispatch } from '../../assets/Redux/SelectedMovieSlice';
+import { showDispatch } from '../../Redux/SelectedMovieSlice';
 
 const BookingComponent = () => {
-// const [selectedMovie, setSelectedMovie] = useState(null);
+
 const [show, setShow] = useState(null);
 const [bookingView,setBookingView]=useState(false)
 const dispatch=useDispatch()
 
 
-const selectedMovie=useSelector((state)=>{ return state.selectedMovie
+const selectedMovie=useSelector((state)=>{ return state.selectedMovie 
 })
 
 const movieName=Object.keys(selectedMovie)[0]
@@ -37,13 +37,13 @@ const handleClick = (showName) => {
         <img
           src={movieDetails[movieName]?.img}
           alt="Movie Poster"
-          className="w-full h-80 object-fill" // Adjust height for better visuals
+          className="w-full h-80 object-fill" 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
       </div>
 
       <div className="p-6 bg-black text-white">
-        {/* <h3 className="text-3xl font-semibold">{movieName}</h3> Increased font size */}
+ 
         <p className="text-md mt-2 text-gray-300 opacity-80">
         {movieDetails[movieName]?.details}
         </p>
@@ -73,16 +73,16 @@ const handleClick = (showName) => {
     Noon Show
   </Button>
   <Button
-    onClick={() => handleClick('FirstShow')}
-    bg={show === 'FirstShow' ? 'blue.500' : 'slategrey'}
+    onClick={() => handleClick('firstShow')}
+    bg={show === 'firstShow' ? 'blue.500' : 'slategrey'}
     color={'white' }    p={2}
     _hover={{ bg: 'slate.500' }}
   >
     First Show
   </Button>
   <Button
-    onClick={() => handleClick('SecondShow')}
-    bg={show === 'SecondShow' ? 'blue.500' : 'slategrey'}
+    onClick={() => handleClick('secondShow')}
+    bg={show === 'secondShow' ? 'blue.500' : 'slategrey'}
     color={'white' }    p={2}
     _hover={{ bg: 'slate.500' }}
   >

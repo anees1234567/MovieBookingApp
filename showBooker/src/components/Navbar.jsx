@@ -1,11 +1,15 @@
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
+
+    const navigate=useNavigate()
   return (
     <nav style={styles.navbar}>
       <ul style={styles.navList}>
-        <li style={styles.navItem}>
-          <a href="/" style={styles.navLink}>Home</a>
+        <li onClick={()=>{navigate("/")}} style={styles.navItem}>
+            <span style={styles.navLink}>Home</span>
         </li>
       </ul>
     </nav>
@@ -33,6 +37,7 @@ const styles = {
     color: 'white',
     textDecoration: 'none',
     fontSize: '18px',
+    cursor:"pointer"
   },
 };
 
