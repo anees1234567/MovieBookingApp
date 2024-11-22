@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button,Flex } from '@chakra-ui/react';
 import Seats from './Seats';
-import MovieCard from './MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieDetails } from '../MovieListComponents/movieListDetails';
 import { showDispatch } from '../../Redux/SelectedMovieSlice';
