@@ -16,12 +16,18 @@ const dispatch=useDispatch()
 const selectedMovie=useSelector((state)=>{ return state.selectedMovie 
 })
 
+
+
+const bookingState=useSelector((state)=>{ return state.booking 
+})
+
 const movieName=Object.keys(selectedMovie)[0]
 
 
 useEffect(()=>{
-  console.log(selectedMovie);
-},[selectedMovie])
+  console.log(bookingState);
+  console.log("selectedMovie",selectedMovie);
+},[bookingState])
 
 
 const handleClick = (showName) => {

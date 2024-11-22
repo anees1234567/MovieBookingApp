@@ -1,19 +1,19 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import { bookMovie } from '../Redux/bookingSlice';
-import { useDispatch } from 'react-redux';
+import { takeEvery, call, put,delay } from 'redux-saga/effects';
+import { bookMovie,setLoading } from '../Redux/bookingSlice';
+
 
 function* bookMoviesSaga(action) {
-    const dispatch=useDispatch()
-    
-
-    
     try {
-     
-    } catch (error) {
-      
-    }
+        yield put(setLoading(true));
+        yield delay(3000);
+        yield put(bookMovie({ ...action.payload}));
+      } catch (error) {
+        console.error("Error in booking saga:", error);
+      } finally {
+        yield put(setLoading(false));
+      }
   }
 
   export function* watchbookMovieSaga() {
-    yield takeEvery("booking/bookMovie", bookMoviesSaga); 
+    yield takeEvery("booking/triggerBooking", bookMoviesSaga); 
   }

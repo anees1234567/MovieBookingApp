@@ -12,8 +12,7 @@ export const store = configureStore({
         booking:bookingSlice.reducer,
         selectedMovie:selectingSlice.reducer
     },
-    middleware:(getDefaultMiddleware)=>{
-        getDefaultMiddleware().concat(sagaMiddleware)
-    }
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), sagaMiddleware],
+
 });
 sagaMiddleware.run(watchbookMovieSaga)

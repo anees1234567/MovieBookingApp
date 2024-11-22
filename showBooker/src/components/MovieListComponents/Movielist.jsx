@@ -3,6 +3,8 @@ import { movieDetails } from './movieListDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { nameDispatch } from '../../Redux/SelectedMovieSlice';
 import { useNavigate } from 'react-router-dom';
+import { clearDispatch } from '../../Redux/SelectedMovieSlice';
+
 
 
 const MovieList = () => {
@@ -10,15 +12,21 @@ const MovieList = () => {
   const navigate=useNavigate()
   const dispatch=useDispatch()
 
+
   const handleSelectedMovie=(Movie)=>{
     dispatch(nameDispatch({name:Movie}))
     navigate("/movie-details")
   }
-  const bookingdetails=useSelector((state)=>{return state.booking})
+ const selectedMovie=useSelector((state)=>{return state.selectedMovie})
+
+
 
   useEffect(()=>{
-      console.log(bookingdetails);
+      dispatch(clearDispatch())
+      console.log(selectedMovie);
+      
   },[])
+
 
   return (
     <>

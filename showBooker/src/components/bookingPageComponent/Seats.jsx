@@ -1,9 +1,10 @@
 import { Button } from '@chakra-ui/react';
 
 import seats from './seat'
-import { bookMovie } from '../../Redux/bookingSlice';
+import { bookMovie ,triggerBooking} from '../../Redux/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {toaster,Toaster} from "../ui/toaster"
+import { useEffect, useState } from 'react';
   
 
 const Seats = ({MovieName,showName}) => {
@@ -13,18 +14,44 @@ const Seats = ({MovieName,showName}) => {
     
     
     const bookSeats=(seatData)=>{
-          dispatch(bookMovie(seatData))    
+          dispatch(triggerBooking(seatData))    
+          
     }
 
-    const bookingState=useSelector((state)=>{ return state.booking.movieDetails})
+ 
+    const [toastId, setToastId] = useState(null);
+    const bookingState=useSelector((state)=>{ return state.booking})
     if(MovieName!=null && showName!=null){
       
-      seatData=bookingState[MovieName][showName]["seats"];
+      seatData=bookingState.movieDetails[MovieName][showName]["seats"];
   }else{
         seatData=seats
   }
     
-    
+  useEffect(() => {
+    if (bookingState.loading) {
+   
+      const id = toaster.create({
+        description: "Booking in Progress",
+        type: "info",
+        removeDelay: 1000
+      });
+      setToastId(id); 
+    }
+  }, [bookingState.loading]); 
+
+
+  useEffect(() => {
+    if (!bookingState.loading && toastId) {
+      toaster.remove(toastId);
+      toaster.create({
+        description: "Booking Successful",
+        type: "success",
+        removeDelay: 2000 
+      });
+    }
+  }, [bookingState.loading, toastId]);
+  
     
 
     
@@ -42,11 +69,7 @@ const Seats = ({MovieName,showName}) => {
                     if (showName != null) {
                       if (!seat.isBooked) {
                         bookSeats({ movie: MovieName, show: showName, row: row, seat: seat.seatNumber });
-                        toaster.create({
-                          description: "Booked successfully",
-                          type: "success",
-                          duration: 3000,
-                        });
+                        
                       } else {
                         toaster.create({
                           description: "Seats already booked",

@@ -13,8 +13,16 @@ const selectingSlice = createSlice({
       }
       state[action.payload.name][action.payload.show] = {};
     },
+    clearDispatch:(state)=>{
+      console.log("clear state");
+      for (const key in state) {
+        if (state.hasOwnProperty(key)) {
+          delete state[key]; 
+        }
+      }
+    }
   },
 });
 
-export const { nameDispatch, showDispatch } = selectingSlice.actions;
+export const { nameDispatch, showDispatch ,clearDispatch} = selectingSlice.actions;
 export default selectingSlice;
