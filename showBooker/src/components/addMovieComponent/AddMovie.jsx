@@ -23,40 +23,42 @@ const Addmovie = () => {
 
   return (
     <div className="flex w-full justify-center "  >
-        <form onSubmit={handleSubmit(onsubmit)}>
-          <Stack gap="4"  align="flex-start">
-            <Field
-                style={{border: "2px"}}
-              label="Movie name"
-              invalid={!!errors.movieName}
+       <div className="border p-2"> 
+         <form onSubmit={handleSubmit(onsubmit)}>
+           <Stack gap="4"  align="flex-start">
+             <Field
               
-              errorText={errors.movieName?.message}
-            >
-              <Input
-                {...register("movieName", { required: "Movie name is required" })}
-              />
-            </Field>
-            <Field
-              label="description"
-              invalid={!!errors.details}
-              errorText={errors.details?.message}
-            >
-              <Input
-                {...register("details", { required: "description is required" })}
-              />
-            </Field>
-            <Field
-              label="image URL"
-              invalid={!!errors.img}
-              errorText={errors.img?.message}
-            >
-              <Input
-                {...register("img", { required: "url is required" })}
-              />
-            </Field>
-            <Button type="submit">Submit</Button>
-          </Stack>
-        </form>
+               label="Movie name"
+               invalid={!!errors.movieName}
+               
+               errorText={errors.movieName?.message}
+             >
+               <Input className="border black w-[300px]"
+                 {...register("movieName", { required: "Movie name is required" })}
+               />
+             </Field>
+             <Field
+               label="description"
+               invalid={!!errors.details}
+               errorText={errors.details?.message}
+             >
+               <Input className="border black w-[300px]"
+                 {...register("details", { required: "description is required" })}
+               />
+             </Field>
+             <Field
+               label="image URL"
+               invalid={!!errors.img}
+               errorText={errors.img?.message}
+             >
+               <Input className="border black w-[300px]"
+                 {...register("img", { required: "url is required" })}
+               />
+             </Field>
+             <Button className="p-2" background={"ActiveCaption"} color={"white"} type="submit">Submit</Button>
+           </Stack>
+         </form>
+       </div>
     </div>
   )
 }
