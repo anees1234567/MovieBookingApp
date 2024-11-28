@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { movieDetails } from '../components/MovieListComponents/movieListDetails';
-
 const bookingSlice = createSlice({
   name: 'booking',
-  initialState: {movieDetails,loading:false},
+  initialState: {movieDetails:{},loading:false},
   reducers: {
     triggerBooking:(state,action)=>{},
+    setMovieList:(state,action)=>{
+      console.log(action.payload);
+        state.movieDetails=action.payload
+    },
     bookMovie: (state, action) => {
       const { movie, show, row, seat} = action.payload;
   
@@ -19,8 +21,6 @@ const bookingSlice = createSlice({
         } else {
           console.log(`Invalid movie, show, or row provided in the action payload.`);
         }
-    
-
     },
     setLoading:(state,action)=>{
         state.loading=action.payload
@@ -28,5 +28,5 @@ const bookingSlice = createSlice({
   }
 });
 
-export const { bookMovie,setLoading ,triggerBooking} = bookingSlice.actions; 
+export const { bookMovie,setLoading ,triggerBooking,setMovieList} = bookingSlice.actions; 
 export default bookingSlice; 

@@ -11,6 +11,9 @@ const Navbar = () => {
         <li onClick={()=>{navigate("/")}} style={styles.navItem}>
             <span style={styles.navLink}>Home</span>
         </li>
+        <li onClick={()=>{navigate("/add-movie")}} style={styles.navItem}>
+            <span style={styles.navLink}>Add Movie</span>
+        </li>
       </ul>
     </nav>
   );

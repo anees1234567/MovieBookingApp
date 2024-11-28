@@ -11,11 +11,8 @@ const Seats = ({MovieName,showName}) => {
   
     let seatData;
     const dispatch =useDispatch()
-    
-    
     const bookSeats=(seatData)=>{
           dispatch(triggerBooking(seatData))    
-          
     }
 
  
@@ -23,34 +20,24 @@ const Seats = ({MovieName,showName}) => {
     const bookingState=useSelector((state)=>{ return state.booking})
     if(MovieName!=null && showName!=null){
       
-      seatData=bookingState.movieDetails[MovieName][showName]["seats"];
+      seatData=bookingState?.movieDetails[MovieName][showName]["seats"];
   }else{
         seatData=seats
   }
     
-  useEffect(() => {
-    if (bookingState.loading) {
-   
-      const id = toaster.create({
-        description: "Booking in Progress",
-        type: "info",
-        removeDelay: 1000
-      });
-      setToastId(id); 
-    }
-  }, [bookingState.loading]); 
+  
 
 
-  useEffect(() => {
-    if (!bookingState.loading && toastId) {
-      toaster.remove(toastId);
-      toaster.create({
-        description: "Booking Successful",
-        type: "success",
-        removeDelay: 2000 
-      });
-    }
-  }, [bookingState.loading, toastId]);
+  // useEffect(() => {
+  //   if (!bookingState.loading && toastId) {
+     
+  //     toaster.create({
+  //       description: "Booking Successful",
+  //       type: "success",
+  //       removeDelay: 2000 
+  //     });
+  //   }
+  // }, []);
   
     
 
